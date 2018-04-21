@@ -1,0 +1,27 @@
+<ion-header>
+
+    <ion-navbar>
+      <ion-title>ผลห้องแล็บ</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding>
+    <ion-card *ngFor="let lab of labs">
+      <ion-card-header>
+        <p>{{lab.LABTEST}}</p>
+        <h3>{{lab.HOSNAME}}</h3>  
+        <h2>{{lab.DATE_SERV | date : format : timezone}}</h2>
+      </ion-card-header>        
+      <ion-list>
+          <ion-item>
+            <ion-icon name="arrow-forward" item-start></ion-icon>ผล
+            <div item-end >{{lab.LABRESULT}}</div>
+            <div item-end *ngIf='lab.LABRESULT==null'>ไม่ทราบ</div>
+          </ion-item> 
+      </ion-list>
+    </ion-card>
+  
+  </ion-content>
+  

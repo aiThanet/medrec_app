@@ -1,0 +1,46 @@
+<!--
+  Generated template for the PatientQrPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>
+      <img alt="logo" class="title-image" src="assets/imgs/logo_horizontal.png">
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <button ion-button full icon-left (click)="scanCode()" color="secondary">
+    <ion-icon name="qr-scanner"></ion-icon>เพิ่มแพทย์</button>
+  <ion-card *ngIf="scannedCode">
+    <ion-card-content>
+      Result from Scan: {{ scannedCode }}
+    </ion-card-content>
+  </ion-card>
+  <form (ngSubmit)="searchViewer()" #addForm="ngForm">
+    <ion-item>
+      <ion-label floating>ใส่ไอดีของแพทย์</ion-label>
+      <ion-input type="text" [(ngModel)]="viewerAddr" [ngModelOptions]="{standalone: true}"></ion-input>
+    </ion-item>
+    <button ion-button type="submit" block [disabled]="!viewerAddr">ค้นหา</button>
+  </form>
+  <ion-card *ngIf="search.isSearch">
+    <ion-card-content *ngIf="!search.result.isFound">
+      <p strong>ไม่พบแพทย์</p>
+    </ion-card-content>
+    <ion-card-content *ngIf="search.result.isFound" text-center padding-top>
+      <p>{{search.result.fname}} {{search.result.lname}}</p>
+      <button *ngIf="!search.result.isAdd" ion-button round small color="seFcondary" type="button" (click)="addViewer(search.result.addr)">
+        <span *ngIf="!search.result.loading">เพิ่ม</span>
+        <img *ngIf="search.result.loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+        />
+      </button>
+      <button disabled *ngIf="search.result.isAdd" ion-button round small color="secondary" type="button">เพิ่มสิทธิ์แล้ว</button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

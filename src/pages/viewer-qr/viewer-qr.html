@@ -1,0 +1,30 @@
+<!--
+  Generated template for the QrPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title padding>
+      <img alt="logo" class="title-image" src="assets/imgs/logo_horizontal.png">
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+
+
+  <ion-card *ngIf="createdCode">
+    <ngx-qrcode [qrc-value]="createdCode"></ngx-qrcode>
+    <ion-card-content>
+      <p>ไอดีของคุณคือ : {{ createdCode }}</p>
+    </ion-card-content>
+  </ion-card>
+
+
+</ion-content>

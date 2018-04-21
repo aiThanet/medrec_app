@@ -1,0 +1,35 @@
+<ion-header>
+
+    <ion-navbar>
+      <ion-title>ประวัติการนัดแพทย์</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding>
+    <ion-card *ngFor="let appointment of appointments">
+      <ion-card-header>
+        <h2>{{appointment.APDATE | date : format : timezone}}</h2>
+        <h3>{{appointment.HOSNAME}}</h3>        
+      </ion-card-header>        
+      <ion-list>
+          <ion-item>
+            <ion-icon name="arrow-forward" item-start></ion-icon>โรค
+            <div item-end >{{appointment.APDIAG}}</div>
+            <div item-end *ngIf='appointment.APDIAG==null'>ไม่ทราบ</div>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="arrow-forward" item-start></ion-icon>ประเภท
+            <div item-end>{{appointment.APTYPE}}</div>
+            <div item-end *ngIf='appointment.APTYPE==null'>ไม่ทราบ</div>
+          </ion-item>  
+          <ion-item>
+            <ion-icon name="arrow-forward" item-start></ion-icon>แพทย์
+            <div item-end>{{appointment.PROVIDER}}</div>
+            <div item-end *ngIf='appointment.PROVIDER==null'>ไม่ทราบ</div>
+          </ion-item>  
+      </ion-list>
+    </ion-card>
+  
+  </ion-content>

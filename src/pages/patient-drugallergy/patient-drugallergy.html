@@ -1,0 +1,36 @@
+<ion-header>
+
+    <ion-navbar>
+      <ion-title>ประวัติการแพ้ยา</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding>
+    <ion-card *ngFor="let drug_all of drug_alls">
+      <ion-card-header>
+        <h3>{{drug_all.DNAME}}</h3>
+        <p>{{drug_all.DATERECORD | date : format : timezone}}</p>
+      </ion-card-header>        
+      <ion-list>
+          <ion-item>
+            <ion-icon name="arrow-forward" item-start></ion-icon>ชนิดการแพ้
+            <div item-end >{{drug_all.TYPEDX}}</div>
+            <div item-end *ngIf='drug_all.TYPEDX==null'>ไม่ทราบ</div>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="arrow-forward" item-start></ion-icon>รู้จาก
+            <div item-end>{{drug_all.INFORMANT}} {{drug_all.DUNIT}}</div>
+            <div item-end *ngIf='drug_all.INFORMANT==null'>ไม่ทราบ</div>
+          </ion-item>  
+          <ion-item>
+            <ion-icon name="arrow-forward" item-start></ion-icon>ความรุนแรง
+            <div item-end>{{drug_all.ALEVEL}}</div>
+            <div item-end *ngIf='drug_all.ALEVEL==null'>ไม่ทราบ</div>
+          </ion-item>   
+      </ion-list>
+    </ion-card>
+  
+  </ion-content>
+  

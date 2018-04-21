@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <img alt="logo" class="title-image" src="../../assets/imgs/logo_horizontal.png">
+    </ion-title>
+  </ion-navbar>
+  <ion-searchbar (ionInput)="searchItems($event)"></ion-searchbar>
+</ion-header>
+
+<ion-content class="cards-bg social-cards">
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingText="ดึงเพื่อโหลดใหม่..." refreshingText="กำลังโหลดใหม่...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card *ngFor="let viewer of viewers">
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="../../assets/icon/doctor_female.png">
+      </ion-avatar>
+      <h2>{{viewer.fname}} {{viewer.lname}}</h2>
+      <p>viewer hospital</p>
+    </ion-item>
+    <ion-item>
+      <button ion-button icon-left clear item-start>
+        <ion-icon name="information-circle"></ion-icon>ดูรายละเอียด</button>
+      <button ion-button color="danger" icon-left clear item-end (click)="revokePermission(viewer.ethaddress)">
+        <ion-icon name="trash"></ion-icon>เพิกถอนสิทธิ์</button>
+    </ion-item>
+  </ion-card>
+  <ion-item padding-top no-lines text-center *ngIf="viewers?.length == 0">
+    ไม่พบแพทย์
+  </ion-item>
+</ion-content>

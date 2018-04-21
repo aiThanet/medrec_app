@@ -1,0 +1,56 @@
+<ion-header>
+
+    <ion-navbar>
+      <ion-title>ประวัติการแอดมิท</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding>
+    <ion-card *ngFor="let admission of admissions">
+      <ion-card-header>
+        <h2>{{admission.HOSNAME}}</h2>
+        <p>{{admission.DATETIME_ADMIT | date : format : timezone}}</p>
+      </ion-card-header>        
+      <ion-list style="font-size: 0.5rem">
+          <ion-item>
+            <ion-icon name="arrow-forward" item-start></ion-icon>หวาด
+            <div item-end >{{admission.WARDADMIT}}</div>
+            <div item-end *ngIf='admission.WARDADMIT==null'>ไม่ทราบ</div>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="arrow-forward" item-start></ion-icon>ประเภท
+            <div item-end>{{admission.TYPEIN}}</div>
+            <div item-end *ngIf='admission.TYPEIN==null'>ไม่ทราบ</div>
+          </ion-item>  
+          <ion-item>
+            <ion-icon name="arrow-forward" item-start></ion-icon>เหตุ
+            <div item-end>{{admission.CAUSEIN}}</div>
+            <div item-end *ngIf='admission.CAUSEIN==null'>ไม่ทราบ</div>
+          </ion-item>  
+          <ion-item>
+            <ion-icon name="arrow-forward" item-start></ion-icon>นํ้าหนัก
+            <div item-end>{{admission.ADMITWEIGHT}}</div>
+            <div item-end *ngIf='admission.ADMITWEIGHT==null'>ไม่ทราบ</div>
+          </ion-item>  
+          <ion-item>
+            <ion-icon name="arrow-forward" item-start></ion-icon>ส่วนสูง
+            <div item-end>{{admission.ADMITHEIGHT}}</div>
+            <div item-end *ngIf='admission.ADMITHEIGHT==null'>ไม่ทราบ</div>
+          </ion-item>  
+          <ion-item>
+            <ion-icon name="arrow-forward" item-start></ion-icon>วันกลับบ้าน
+            <div item-end>{{admission.DATETIME_DISCH | date : format : timezone}}</div>
+            <div item-end *ngIf='admission.DATETIME_DISCH==null'>ไม่ทราบ</div>
+          </ion-item> 
+          <ion-item>
+            <ion-icon name="arrow-forward" item-start></ion-icon>สาเหตุที่กลับ
+            <div item-end>{{admission.CAUSEOUT}}</div>
+            <div item-end *ngIf='admission.CAUSEOUT==null'>ไม่ทราบ</div>
+          </ion-item> 
+      </ion-list>
+    </ion-card>
+  
+  </ion-content>
+  

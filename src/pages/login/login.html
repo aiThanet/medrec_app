@@ -1,0 +1,50 @@
+<ion-content class="login-content" padding>
+  <div id="usertype-box">
+    <ion-item>
+      <ion-label>เข้าสู่ระบบ 
+        <span>{{usertypenameTH}}</span>
+      </ion-label>
+      <ion-toggle [(ngModel)]="usertype" (ionChange)="changeUserType()"></ion-toggle>
+    </ion-item>
+  </div>
+  <ion-row class="logo-row">
+    <ion-col></ion-col>
+    <ion-col width-67>
+      <img src="assets/imgs/Logo_MedRec.png" />
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+  <div class="login-box">
+    <form (ngSubmit)="login()" #registerForm="ngForm">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+
+            <ion-item>
+              <ion-input type="text" placeholder="อีเมล" name="email" [(ngModel)]="loginCredentials.email" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="password" placeholder="รหัสผ่าน" name="password" [(ngModel)]="loginCredentials.password" required></ion-input>
+            </ion-item>
+
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="signup-col">
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">เข้าสู่ระบบ</button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          <button [disabled]="usertype" ion-button class="register-btn" block clear type="button" (click)="register()">สมัครสมาชิก</button>
+        </ion-col>
+        <ion-col col-6>
+          <button [disabled]="usertype" ion-button class="register-btn" block clear type="button" (click)="resetPassword()">ลืมรหัสผ่าน</button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </div>
+</ion-content>

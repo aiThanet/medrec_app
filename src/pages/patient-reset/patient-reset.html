@@ -1,0 +1,39 @@
+<ion-content padding>
+  <div class="screen-center">
+    <div>
+      <h2 text-center padding-top>ต้องการรีเซ็ตรหัสผ่าน?</h2>
+    </div>
+
+
+    <div class="reset-box">
+      <form [formGroup]="changepasswordForm" (ngSubmit)="changePassword()">
+        <ion-item>
+          <ion-label floating>รหัสผ่าน
+            <span class="text-red">*</span>
+          </ion-label>
+          <ion-input type="password" [(ngModel)]="changepasswordCredentials.password" formControlName="password" [class.invalid]="!changepasswordForm.controls.password.valid && (changepasswordForm.controls.password.dirty)"></ion-input>
+        </ion-item>
+        <ion-item no-lines *ngIf="!changepasswordForm.controls.password.valid && (changepasswordForm.controls.password.dirty)">
+          <p>รหัสผ่านต้องมี 8-20 ตัวอักษร</p>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>ยืนยันรหัสผ่าน
+            <span class="text-red">*</span>
+          </ion-label>
+          <ion-input type="password" [(ngModel)]="changepasswordCredentials.confirmPassword" formControlName="confirmPassword" [class.invalid]="changepasswordForm.controls.confirmPassword.errors?.MatchPassword && (changepasswordForm.controls.confirmPassword.dirty)"></ion-input>
+        </ion-item>
+        <ion-item no-lines *ngIf="changepasswordForm.controls.confirmPassword.errors?.MatchPassword && (changepasswordForm.controls.confirmPassword.dirty)">
+          <p>รหัสผ่านไม่ตรงกัน</p>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Private Key
+            <span class="text-red">*</span>
+          </ion-label>
+          <ion-input type="text" [(ngModel)]="changepasswordCredentials.privatekey" formControlName="privatekey" [class.invalid]="!changepasswordForm.controls.privatekey.valid  && (changepasswordForm.controls.privatekey.dirty)"></ion-input>
+        </ion-item>
+        <button margin-top ion-button type="submit" block [disabled]="!changepasswordForm.valid">ยืนยัน</button>
+      </form>
+    </div>
+  </div>
+
+</ion-content>

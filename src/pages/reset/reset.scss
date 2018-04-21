@@ -1,0 +1,22 @@
+page-reset {
+  .screen-center {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  ion-row {
+    align-items: center;
+    text-align: center;
+  }
+  ion-item {
+    border-radius: 5px !important;
+    padding-left: 30px !important;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    border: 1px solid #cecece !important;
+    box-shadow: none !important;
+  }
+}

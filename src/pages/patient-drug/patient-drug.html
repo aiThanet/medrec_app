@@ -1,0 +1,42 @@
+<ion-header>
+
+    <ion-navbar>
+      <ion-title>ประวัติจ่ายยา</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding>
+    <ion-card *ngFor="let drug of drugs">
+      <ion-card-header>
+        <h3>{{drug.DRUGNAME}}</h3>
+        <h3>{{drug.DNAME}}</h3>
+        <h3>{{drug.HOSNAME}}</h3>
+        <p>{{drug.DATE_SERV | date : format : timezone}}</p>
+      </ion-card-header>        
+      <ion-list>
+          <ion-item>
+            <ion-icon name="arrow-forward" item-start></ion-icon>ชนิด
+            <div item-end >{{drug.AEPLACE}}</div>
+            <div item-end *ngIf='drug.AEPLACE==null'>ไม่ทราบ</div>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="arrow-forward" item-start></ion-icon>จำนวน
+            <div item-end>{{drug.AMOUNT}} {{drug.DUNIT}}</div>
+            <div item-end *ngIf='drug.AMOUNT==null'>ไม่ทราบ</div>
+          </ion-item>  
+          <ion-item>
+            <ion-icon name="arrow-forward" item-start></ion-icon>ราคา
+            <div item-end>{{drug.DRUGCOST}}</div>
+            <div item-end *ngIf='drug.DRUGCOST==null'>ไม่ทราบ</div>
+          </ion-item>  
+          <ion-item>
+            <ion-icon name="arrow-forward" item-start></ion-icon>ผู้สั่งยา
+            <div item-end>{{drug.PROV_PRENAME}} {{drug.PROV_NAME}} {{drug.PROV_LNAME}}</div>
+          </ion-item>  
+      </ion-list>
+    </ion-card>
+  
+  </ion-content>
+  

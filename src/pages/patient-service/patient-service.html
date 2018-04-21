@@ -1,0 +1,71 @@
+<ion-header>
+
+    <ion-navbar>
+      <ion-title>ประวัติการรับบริการ</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding>
+    <ion-card *ngFor="let service of services">
+      <ion-card-header>
+        <h2>{{service.HOSNAME}}</h2>
+        <p>{{service.DATE_SERV | date : format : timezone}}</p>
+      </ion-card-header>        
+      <ion-list>
+        <ion-item>
+          <ion-icon name="leaf" item-start></ion-icon>ประเภทการเข้ารับบริการ
+          <div item-end>{{service.TYPEIN}}</div>
+          <div item-end *ngIf='service.TYPEIN==null'>ไม่ทราบ</div>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="leaf" item-start></ion-icon>สาเหตุการเข้ารับบริการ
+          <div item-end>{{service.CAUSEIN}} {{service.DUNIT}}</div>
+          <div item-end *ngIf='service.CAUSEIN==null'>ไม่ทราบ</div>
+        </ion-item>  
+        <ion-item>
+          <ion-icon name="leaf" item-start></ion-icon>ผลวินิจฉัยใฉแพทย์
+          <div item-end>{{service.CHIEFCOMP}}</div>
+          <div item-end *ngIf='service.CHIEFCOMP==null'>ไม่ทราบ</div>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="leaf" item-start></ion-icon>อุณหภูมิร่างกาย
+          <div item-end>{{service.BODYTEMP}}°C)</div>
+          <div item-end *ngIf='service.BODYTEMP==null'>ไม่ทราบ</div>
+        </ion-item>  
+        <ion-item>
+          <ion-icon name="leaf" item-start></ion-icon>Systolic
+          <div item-end>{{service.SBLOODPRESSURE}} mmHg</div>
+          <div item-end *ngIf='service.SBLOODPRESSURE==null'>ไม่ทราบ</div>
+        </ion-item> 
+        <ion-item>
+            <ion-icon name="leaf" item-start></ion-icon>Diastolic
+            <div item-end>{{service.DBLOODPRESSURE}} mmHg</div>
+            <div item-end *ngIf='service.SBLOODPRESSURE==null'>ไม่ทราบ</div>
+        </ion-item>    
+        <ion-item>
+          <ion-icon name="leaf" item-start></ion-icon>ชีพจร
+          <div item-end>{{service.PULSERATE}} BPM</div>
+          <div item-end *ngIf='service.PULSERATE==null'>ไม่ทราบ</div>
+        </ion-item>  
+        <ion-item>
+          <ion-icon name="leaf" item-start></ion-icon>อัตราการหายใจ
+          <div item-end>{{service.RESPIRATORYRATE}} BPM</div>
+          <div item-end *ngIf='service.RESPIRATORYRATE==null'>ไม่ทราบ</div>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="leaf" item-start></ion-icon>สาเหตุการให้กลับบ้าน
+            <div item-end>{{service.TYPEOUT}}</div>
+            <div item-end *ngIf='service.TYPEOUT==null'>ไม่ทราบ</div>
+        </ion-item>  
+        <ion-item>
+          <ion-icon name="leaf" item-start></ion-icon>ค่าบริการ
+          <div item-end>{{service.PRICE}}</div>
+          <div item-end *ngIf='service.PRICE==null'>ไม่ทราบ</div>
+        </ion-item> 
+      </ion-list>
+    </ion-card>
+  
+  </ion-content>
+  

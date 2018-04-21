@@ -1,0 +1,138 @@
+<!--
+  Generated template for the RegisterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar hideBackButton>
+    <ion-title>สมัครสมาชิก</ion-title>
+    <ion-buttons start>
+      <button ion-button icon-left (click)="prev()">
+        <ion-icon name="arrow-back"></ion-icon>Back</button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button *ngIf="page == 1" ion-button icon-right (click)="next()">Next
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+
+
+  <ion-slides #registerSlider>
+    <ion-slide>
+      <form [formGroup]="registerForm1">
+        <p>ชื่อผู้ใช้งานและรหัสผ่าน</p>
+        <ion-item>
+          <ion-label floating>อีเมล
+            <span class="text-red">*</span>
+          </ion-label>
+          <ion-input type="text" [(ngModel)]="registerCredentials.email" formControlName="email" [class.invalid]="!registerForm1.controls.email.valid  && (registerForm1.controls.email.dirty)"></ion-input>
+        </ion-item>
+        <ion-item no-lines *ngIf="!registerForm1.controls.email.valid  && (registerForm1.controls.email.dirty)">
+          <p>อีเมลไม่ถูกต้อง</p>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>รหัสผ่าน
+            <span class="text-red">*</span>
+          </ion-label>
+          <ion-input type="password" [(ngModel)]="registerCredentials.password" formControlName="password" [class.invalid]="!registerForm1.controls.password.valid && (registerForm1.controls.password.dirty)"></ion-input>
+        </ion-item>
+        <ion-item no-lines *ngIf="!registerForm1.controls.password.valid && (registerForm1.controls.password.dirty)">
+          <p>รหัสผ่านต้องมี 8-20 ตัวอักษร</p>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>ยืนยันรหัสผ่าน
+            <span class="text-red">*</span>
+          </ion-label>
+          <ion-input type="password" [(ngModel)]="registerCredentials.confirmPassword" formControlName="confirmPassword" [class.invalid]="registerForm1.controls.confirmPassword.errors?.MatchPassword && (registerForm1.controls.confirmPassword.dirty)"></ion-input>
+        </ion-item>
+        <ion-item no-lines *ngIf="registerForm1.controls.confirmPassword.errors?.MatchPassword && (registerForm1.controls.confirmPassword.dirty)">
+          <p>รหัสผ่านไม่ตรงกัน</p>
+        </ion-item>
+        <ion-item padding-top>
+          <ion-label floating>โรงพยาบาลหลัก
+            <span class="text-red">*</span>
+          </ion-label>
+          <ion-select [(ngModel)]="registerCredentials.hospcode" formControlName="hospital" okText="ตกลง" cancelText="ยกเลิก">
+            <ion-option *ngFor="let hospital of hospitals" [value]="hospital.hospcode">{{hospital.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </form>
+    </ion-slide>
+    <ion-slide>
+      <form (ngSubmit)="register()" [formGroup]="registerForm2">
+        <p>ข้อมูลส่วนบุคคล</p>
+        <ion-item>
+          <ion-label floating>ชื่อ
+            <span class="text-red">*</span>
+          </ion-label>
+          <ion-input type="text" [(ngModel)]="registerCredentials.fname" formControlName="fname" [class.invalid]="!registerForm2.controls.fname.valid  && (registerForm2.controls.fname.dirty)"></ion-input>
+        </ion-item>
+        <ion-item no-lines *ngIf="!registerForm2.controls.fname.valid && (registerForm2.controls.fname.dirty)">
+          <p>โปรดกรอกเป็นภาษาไทย</p>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>นามสกุล
+            <span class="text-red">*</span>
+          </ion-label>
+          <ion-input type="text" [(ngModel)]="registerCredentials.lname" formControlName="lname" [class.invalid]="!registerForm2.controls.lname.valid && (registerForm2.controls.lname.dirty)"></ion-input>
+        </ion-item>
+        <ion-item no-lines *ngIf="!registerForm2.controls.lname.valid && (registerForm2.controls.lname.dirty)">
+          <p>โปรดกรอกเป็นภาษาไทย</p>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>วันเกิด (วัน-เดือน-ปีเกิด)
+            <span class="text-red">*</span>
+          </ion-label>
+          <ion-datetime displayFormat="D-MM-YYYY" min="1930-01-01" max="{{year}}" formControlName="birthdate" [(ngModel)]="registerCredentials.birthdate"></ion-datetime>
+        </ion-item>
+        <!-- <ion-item no-lines *ngIf="!registerForm2.controls.birthdate.valid  && (registerForm2.controls.birthdate.dirty)">
+          <p>กรุณาระบุวันเกิด</p>
+        </ion-item> -->
+        <ion-item>
+          <ion-label floating>เพศ
+            <span class="text-red">*</span>
+          </ion-label>
+          <ion-select [(ngModel)]="registerCredentials.gender" formControlName="gender" [class.invalid]="!registerForm2.controls.gender.valid && (registerForm2.controls.gender.dirty)">
+            <ion-option value="ชาย">ชาย</ion-option>
+            <ion-option value="หญิง">หญิง</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item no-lines *ngIf="!registerForm2.controls.gender.valid && (registerForm2.controls.gender.dirty)">
+          <p>กรุณาระบุเพศ</p>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>ที่อยู่
+          </ion-label>
+          <ion-input type="text-area" [(ngModel)]="registerCredentials.homeaddress" formControlName="homeaddress" [class.invalid]="registerForm2.controls.homeaddress.errors?.MatchPassword && (registerForm2.controls.homeaddress.dirty)"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>เบอร์ติดต่อ
+          </ion-label>
+          <ion-input type="number" [(ngModel)]="registerCredentials.telephone" formControlName="telephone" [class.invalid]="!registerForm2.controls.telephone.valid  && (registerForm2.controls.telephone.dirty)"></ion-input>
+        </ion-item>
+        <ion-item no-lines *ngIf="!registerForm2.controls.telephone.valid && (registerForm2.controls.telephone.dirty)">
+          <p>กรุณาระบุเบอร์ติดต่อ (ex. 0812345678)</p>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>หมายเลขบัตรประชาชน
+            <span class="text-red">*</span>
+          </ion-label>
+          <ion-input type="number" [(ngModel)]="registerCredentials.cid" formControlName="cid" [class.invalid]="!registerForm2.controls.cid.valid && (registerForm2.controls.cid.dirty)"></ion-input>
+        </ion-item>
+        <ion-item no-lines *ngIf="!registerForm2.controls.cid.valid && (registerForm2.controls.cid.dirty)">
+          <p>กรุณาระบุหมายเลขบัตรประชาชน 13 หลัก</p>
+        </ion-item>
+        <button margin-top ion-button type="submit" block [disabled]="!registerForm2.valid || !registerForm1.valid">Submit</button>
+      </form>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

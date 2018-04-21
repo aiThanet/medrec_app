@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title padding>
+      <img alt="logo" class="title-image" src="assets/imgs/logo_horizontal.png">
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list no-border>
+
+    <ion-list-header>
+      แก้ไขโปรไฟล์
+    </ion-list-header>
+
+    <ion-item class="text-light">
+      <ion-icon name='reverse-camera' item-start disabled></ion-icon>
+      เปลี่ยนรูปโปรไฟล์
+      <ion-note item-end>
+        อัพโหลดรูป
+      </ion-note>
+    </ion-item>
+
+    <ion-item *ngIf="userType=='Patient'" (click)="editProfile()">
+      <ion-icon name='person' item-start></ion-icon>
+      <ion-label>
+        แก้ไขข้อมูลส่วนตัว
+      </ion-label>
+
+    </ion-item>
+
+    <ion-item *ngIf="userType=='Patient'" (click)="changePassword()">
+      <ion-icon name='refresh' item-start></ion-icon>
+      เปลี่ยนรหัสผ่าน
+    </ion-item>
+
+    <ion-item *ngIf="userType=='Patient'" (click)="viewprivatekey()">
+      <ion-icon name='eye' item-start></ion-icon>
+      ดู private key
+    </ion-item>
+
+  </ion-list>
+
+
+  <ion-list>
+
+    <ion-list-header>
+      ตั้งค่าแอพพลิเคชั่น
+    </ion-list-header>
+
+    <ion-item class="text-light">
+      ตั้งค่า PIN
+      <ion-icon name='md-lock' item-start></ion-icon>
+      <ion-note item-end>ใช้ในการล็อคแอพพลิเคชั่น!</ion-note>
+    </ion-item>
+
+    <ion-item class="text-light">
+      <ion-toggle checked="true"></ion-toggle>
+      <ion-label>
+        เปิดระบบแจ้งเตือน
+      </ion-label>
+      <ion-icon name='md-notifications' item-start></ion-icon>
+    </ion-item>
+
+
+  </ion-list>
+
+  <ion-list>
+
+    <ion-list-header>
+      เกี่ยวกับแอพพลิเคชั่น
+    </ion-list-header>
+
+    <ion-item class="text-light">
+      <ion-icon name='md-information-circle' item-start></ion-icon>
+      รายละเอียด
+
+    </ion-item>
+
+    <ion-item class="text-light">
+      <ion-icon name='md-help-circle' item-start></ion-icon>
+      ช่วยเหลือ
+    </ion-item>
+
+    <button ion-item (click)="logout()">
+      <ion-icon name='md-log-out' item-start></ion-icon>
+      <span ion-text color="danger">ออกจากระบบ</span>
+    </button>
+
+  </ion-list>
+
+</ion-content>

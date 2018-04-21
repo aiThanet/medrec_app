@@ -1,0 +1,83 @@
+<!--
+  Generated template for the PatientEditPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>
+      <img alt="logo" class="title-image" src="assets/imgs/logo_horizontal.png">
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <form (ngSubmit)="edit()" [formGroup]="editForm">
+    <p text-center>แก้ไขข้อมูลส่วนบุคคล</p>
+    <ion-item>
+      <ion-label floating>ชื่อ
+        <span class="text-red">*</span>
+      </ion-label>
+      <ion-input value="{{token.fname}}" type="text" [(ngModel)]="editCredentials.fname" formControlName="fname"
+        [class.invalid]="!editForm.controls.fname.valid  && (editForm.controls.fname.dirty)"></ion-input>
+    </ion-item>
+    <ion-item no-lines *ngIf="!editForm.controls.fname.valid && (editForm.controls.fname.dirty)">
+      <p>โปรดกรอกเป็นภาษาไทย</p>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>นามสกุล
+        <span class="text-red">*</span>
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="editCredentials.lname" formControlName="lname" [class.invalid]="!editForm.controls.lname.valid && (editForm.controls.lname.dirty)"></ion-input>
+    </ion-item>
+    <ion-item no-lines *ngIf="!editForm.controls.lname.valid && (editForm.controls.lname.dirty)">
+      <p>โปรดกรอกเป็นภาษาไทย</p>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>วันเกิด (วัน-เดือน-ปีเกิด)
+        <span class="text-red">*</span>
+      </ion-label>
+      <ion-datetime displayFormat="D-MM-YYYY" min="1930-01-01" max="{{year}}" formControlName="birthdate" [(ngModel)]="editCredentials.birthdate"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>เพศ
+        <span class="text-red">*</span>
+      </ion-label>
+      <ion-select [(ngModel)]="editCredentials.gender" formControlName="gender" [class.invalid]="!editForm.controls.gender.valid && (editForm.controls.gender.dirty)">
+        <ion-option value="ชาย">ชาย</ion-option>
+        <ion-option value="หญิง">หญิง</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item no-lines *ngIf="!editForm.controls.gender.valid && (editForm.controls.gender.dirty)">
+      <p>กรุณาระบุเพศ</p>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>ที่อยู่
+      </ion-label>
+      <ion-input type="text-area" [(ngModel)]="editCredentials.homeaddress" formControlName="homeaddress" [class.invalid]="editForm.controls.homeaddress.errors?.MatchPassword && (editForm.controls.homeaddress.dirty)"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>เบอร์ติดต่อ
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="editCredentials.telephone" formControlName="telephone" [class.invalid]="!editForm.controls.telephone.valid  && (editForm.controls.telephone.dirty)"></ion-input>
+    </ion-item>
+    <ion-item no-lines *ngIf="!editForm.controls.telephone.valid && (editForm.controls.telephone.dirty)">
+      <p>กรุณาระบุเบอร์ติดต่อ (ex. 0812345678)</p>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>หมายเลขบัตรประชาชน
+        <span class="text-red">*</span>
+      </ion-label>
+      <ion-input type="number" [(ngModel)]="editCredentials.cid" formControlName="cid" [class.invalid]="!editForm.controls.cid.valid && (editForm.controls.cid.dirty)"></ion-input>
+    </ion-item>
+    <ion-item no-lines *ngIf="!editForm.controls.cid.valid && (editForm.controls.cid.dirty)">
+      <p>กรุณาระบุหมายเลขบัตรประชาชน 13 หลัก</p>
+    </ion-item>
+    <button margin-top ion-button type="submit" block [disabled]="!editForm.valid || !editForm.valid">แก้ไข</button>
+  </form>
+
+</ion-content>

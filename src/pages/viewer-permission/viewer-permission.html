@@ -1,0 +1,119 @@
+<!--
+  Generated template for the PermissionPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <img alt="logo" class="title-image" src="assets/imgs/logo_horizontal.png">
+    </ion-title>
+  </ion-navbar>
+  <ion-searchbar (ionInput)="searchItems($event)"></ion-searchbar>
+</ion-header>
+
+
+<ion-content class="cards-bg social-cards">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingText="ดึงเพื่อโหลดใหม่..." refreshingText="กำลังโหลดใหม่...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card *ngFor="let patient of patients" backgroud-color="#f9f9fc">
+    <ion-item>
+      <ion-avatar *ngIf="patient.gender != 'หญิง'" item-start>
+        <img src="../../assets/icon/man.png">
+      </ion-avatar>
+      <ion-avatar *ngIf="patient.gender == 'หญิง'" item-start>
+        <img src="../../assets/icon/woman.png">
+      </ion-avatar>
+      <h2>{{patient.fname}} {{patient.lname}}</h2>
+    </ion-item>
+    <ion-card-content *ngIf="patient.show" padding-top margin-top backgroud-color="#fff">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4>
+            วันเกิด
+          </ion-col>
+          <ion-col col-8 class="moredetail">
+            {{patient.birthdate.substr(0,10)}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4>
+            บัตรประชาชน
+          </ion-col>
+          <ion-col col-8 class="moredetail">
+            {{patient.cid}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4>
+            ที่อยู่
+          </ion-col>
+          <ion-col col-8 class="moredetail">
+            {{patient.homeaddress}}
+            <span *ngIf="patient.homeaddress =='' ">-</span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4>
+            เบอร์ติดต่อ
+          </ion-col>
+          <ion-col col-8 class="moredetail">
+            {{patient.telephone}}
+            <span *ngIf="patient.telephone =='' ">-</span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4>
+            อีเมล
+          </ion-col>
+          <ion-col col-8 class="moredetail">
+            {{patient.username}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4>
+            เพศ
+          </ion-col>
+          <ion-col col-8 class="moredetail">
+            {{patient.gender}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+
+    </ion-card-content>
+    <ion-row>
+      <ion-col>
+        <button *ngIf="!patient.show" (click)="patient.show = true" ion-button color="secondary" clear small icon-start>
+          <ion-icon name='md-eye'></ion-icon>
+          เพิ่มเติม
+        </button>
+        <button *ngIf="patient.show" (click)="patient.show = false" ion-button color="dark" clear small icon-start>
+          <ion-icon name='md-eye-off'></ion-icon>
+          ซ่อน
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button color="primary" clear small icon-start (click)="viewPatient(patient)">
+          <ion-icon name='logo-buffer'></ion-icon>
+          ดูประวัติ
+        </button>
+      </ion-col>
+
+    </ion-row>
+  </ion-card>
+  <ion-item padding-top no-lines text-center *ngIf="patients?.length == 0">
+    ไม่พบผู้ป่วย
+  </ion-item>
+</ion-content>
+
+<style>
+  .social-cards ion-col {
+    padding: 0;
+  }
+
+</style>
