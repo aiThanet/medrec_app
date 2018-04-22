@@ -40,6 +40,7 @@ import { ViewerShowpatientPage } from '../pages/viewer-showpatient/viewer-showpa
 import { SettingPage } from '../pages/setting/setting'
 import { ResetPage } from '../pages/reset/reset'
 import { RegisterPage } from '../pages/register/register'
+import { ShowprivatekeyPage } from '../pages/showprivatekey/showprivatekey'
 
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
@@ -77,7 +78,8 @@ import {Push, PushObject, PushOptions} from "@ionic-native/push";
     ViewerShowpatientPage,
     SettingPage,
     ResetPage,
-    RegisterPage
+    RegisterPage,
+    ShowprivatekeyPage
   ],
   imports: [
     BrowserModule,
@@ -117,7 +119,8 @@ import {Push, PushObject, PushOptions} from "@ionic-native/push";
     ViewerShowpatientPage,
     SettingPage,
     ResetPage,
-    RegisterPage
+    RegisterPage,
+    ShowprivatekeyPage
   ],
   providers: [
     StatusBar,

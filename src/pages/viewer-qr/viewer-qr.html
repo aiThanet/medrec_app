@@ -23,6 +23,10 @@
     <ngx-qrcode [qrc-value]="createdCode"></ngx-qrcode>
     <ion-card-content>
       <p>ไอดีของคุณคือ : {{ createdCode }}</p>
+      <button ion-button padding (click)="copy(createdCode)">
+        <ion-icon name="copy"> </ion-icon>
+        <span> คัดลอก</span>
+      </button>
     </ion-card-content>
   </ion-card>
 

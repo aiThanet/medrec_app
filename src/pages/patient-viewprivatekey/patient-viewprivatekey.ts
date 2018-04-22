@@ -67,7 +67,6 @@ export class PatientViewprivatekeyPage {
   copy(text: string) {
     console.log(text);
     this.clipboard.copy(text);
-
   }
 
   ionViewDidLoad() {

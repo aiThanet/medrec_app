@@ -13,7 +13,7 @@ export class GlobalVarsProvider {
   private timeOut: number;
 
   constructor() {
-    this.server_name = "http://localhost:3000/";
+    this.server_name = "http://192.168.0.8:3000/";
     this.timeOut = 5000;
   }
 

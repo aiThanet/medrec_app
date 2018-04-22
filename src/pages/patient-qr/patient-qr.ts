@@ -46,7 +46,7 @@ export class PatientQrPage {
   scanCode() {
     this.barcodeScanner.scan().then(barcodeData => {
       this.viewerAddr = barcodeData.text;
-      this.addViewer(this.viewerAddr);
+      this.searchViewer();
     }, (err) => {
       console.log('Error: ', err);
     });

@@ -63,6 +63,7 @@ export class PatientResetPage {
       body: body
     })).timeout(5000).map(res => res.json()).subscribe(data => {
       if (data.result == "success") {
+        this.loading.dismiss();
         let alert = this.alertCtrl.create({
           title: 'เปลี่ยนรหัสผ่านเสร็จสมบูรณ์',
           message: '',

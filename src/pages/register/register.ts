@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController, LoadingController
 import { Http } from '@angular/http';
 import { Storage } from '@ionic/storage';
 import { GlobalVarsProvider } from '../../providers/global-vars/global-vars';
-import { LoginPage } from '../../pages/login/login'
+import { ShowprivatekeyPage } from '../../pages/showprivatekey/showprivatekey'
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { PasswordValidation } from '../../validators/password';
 
@@ -32,7 +32,7 @@ export class RegisterPage {
   private registerForm1: FormGroup;
   private registerForm2: FormGroup;
   private page = 1;
-  private deviceID : string;
+  private deviceID: string;
   private year: string;
   public hospitals = [{
     hospcode: '1',
@@ -113,15 +113,16 @@ export class RegisterPage {
       telephone: this.registerCredentials.telephone,
       cid: this.registerCredentials.cid,
       hospcode: this.registerCredentials.hospcode,
-      deviceID : this.deviceID
+      deviceID: this.deviceID
     }).timeout(5000).map(res => res.json()).subscribe(data => {
       if (data.result == "success") {
+        this.showLoading();
         let alert = this.alertCtrl.create({
-          title: 'สมัครสมาชิกเสร็จสมบูรณ์',
-          message: 'กลับสู่หน้าเข้าสู่ระบบ',
+          title: 'สมัครสมาชิกเสร็จสมบูรณ์ โปรดดำเนินการขั้นตอนต่อไป',
+          message: 'ไปยังหน้าบันทึก privatekey ',
           buttons: [{
             text: 'ตกลง', handler: () => {
-              this.navCtrl.setRoot(LoginPage);
+              this.navCtrl.setRoot(ShowprivatekeyPage, { privatekey: data.message.privatekey });
             }
           }]
         });

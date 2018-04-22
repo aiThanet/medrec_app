@@ -1,3 +1,8 @@
 page-patient-reset {
-
+    .invalid {
+        border-bottom: 1px solid #ea6153;
+      }
+      .text-red {
+        color: red;
+      }
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Storage } from '@ionic/storage';
+import { Clipboard } from '@ionic-native/clipboard';
 
 /**
  * Generated class for the ViewerQrPage page.
@@ -21,7 +22,7 @@ export class ViewerQrPage {
   private createdCode = null;
   private ethAddr: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private barcodeScanner: BarcodeScanner, private storage: Storage) {
+  constructor(private clipboard: Clipboard, public navCtrl: NavController, public navParams: NavParams, private barcodeScanner: BarcodeScanner, private storage: Storage) {
     storage.get('token').then((val) => {
       this.ethAddr = val.ethaddress;
       this.createCode();
@@ -34,6 +35,11 @@ export class ViewerQrPage {
 
   createCode() {
     this.createdCode = this.ethAddr;
+  }
+
+  copy(text: string) {
+    console.log(text);
+    this.clipboard.copy(text);
   }
 
 }
