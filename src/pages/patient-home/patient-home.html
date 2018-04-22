@@ -27,8 +27,10 @@
       <ion-avatar *ngIf='myprofile.gender=="หญิง"'>
         <img src="../../assets/icon/woman.png">
       </ion-avatar>
-
+      
       <h1 padding-top strong>{{myprofile.fname}} {{myprofile.lname}}</h1>
+      <p ion-text> สถานะ : {{myprofile.statusName}}</p>
+      <p ion-text text-wrap color="danger" *ngIf="myprofile.status != 2">*ท่านไม่สามารถไม่งานระบบได้ เนื่องจากบัญชีของท่านไม่ถูกยืนยัน</p>
     </ion-card-header>
     <ion-card-content *ngIf='PERSON != {}'>
       <ion-row no-padding>
